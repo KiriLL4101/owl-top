@@ -1,7 +1,8 @@
 import { Button } from "../components";
 import Rating from "../components/Rating/Rating";
+import { withLayout } from "../layout/Layout";
 
-export default function Home() {
+function Home() {
   return (
     <>
       <main>
@@ -13,3 +14,5 @@ export default function Home() {
     </>
   );
 }
+
+export default withLayout(Home);
