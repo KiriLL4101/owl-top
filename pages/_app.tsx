@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
         /> */}
         <meta property="og:locale" content="ru_RU" />
       </Head>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
   );
 }
