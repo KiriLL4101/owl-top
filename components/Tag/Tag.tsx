@@ -11,7 +11,7 @@ interface TagProps
   children: ReactNode;
 }
 
-const Tag = ({
+export const Tag = ({
   size = "m",
   color = "ghost",
   href,
@@ -36,5 +36,3 @@ const Tag = ({
     </div>
   );
 };
-
-export default Tag;

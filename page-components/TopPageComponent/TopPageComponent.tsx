@@ -2,18 +2,18 @@ import { useReducer } from "react";
 
 import {
   Htag,
-  // Tag,
   Sort,
   SortEnum,
   HhData,
   Advantages,
+  Product,
+  Tag,
 } from "../../components";
 import { TopLevelCategory, TopPageModel } from "../../types/page.interface";
 import { ProductModel } from "../../types/product.interface";
 import { sortReducer } from "./sort.reducer";
 
 import styles from "./TopPageComponent.module.css";
-import Tag from "../../components/Tag/Tag";
 
 interface TopPageComponentProps {
   firstCategory: TopLevelCategory;
@@ -34,6 +34,7 @@ export const TopPageComponent = ({
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
   };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -47,7 +48,7 @@ export const TopPageComponent = ({
       </div>
       <div>
         {sortedProducts &&
-          sortedProducts.map((p) => <div key={p._id}>{p.title}</div>)}
+          sortedProducts.map((p) => <Product key={p._id} product={p} />)}
       </div>
       <div className={styles.hhTitle}>
         <Htag tag="h2">Вакансии - {page.category}</Htag>
