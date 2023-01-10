@@ -6,8 +6,8 @@ import { ParsedUrlQuery } from "node:querystring";
 import { withLayout } from "../../layout/Layout";
 import { firstLevelMenu } from "../../helpers/helpers";
 import { TopPageComponent } from "../../page-components";
-import type { MenuItem } from "../../types/menu.interface";
 import { TopLevelCategory, TopPageModel } from "../../types/page.interface";
+import type { MenuItem } from "../../types/menu.interface";
 import type { ProductModel } from "../../types/product.interface";
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
