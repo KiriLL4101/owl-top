@@ -3,7 +3,7 @@ import cn from "classnames";
 
 import styles from "./Textarea.module.css";
 
-export interface TextareaProps
+interface TextareaProps
   extends DetailedHTMLProps<
     TextareaHTMLAttributes<HTMLTextAreaElement>,
     HTMLTextAreaElement
