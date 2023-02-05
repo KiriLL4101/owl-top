@@ -1,4 +1,10 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import {
+  forwardRef,
+  type DetailedHTMLProps,
+  type ForwardedRef,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 import cn from "classnames";
 
 import styles from "./Card.module.css";
@@ -9,20 +15,19 @@ export interface CardProps
   children: ReactNode;
 }
 
-export const Card = ({
-  color = "white",
-  children,
-  className,
-  ...props
-}: CardProps): JSX.Element => {
-  return (
-    <div
-      className={cn(styles.card, className, {
-        [styles.blue]: color == "blue",
-      })}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-};
+export const Card = forwardRef(
+  (props: CardProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+    const { color = "white", children, className, ...otherProps } = props;
+    return (
+      <div
+        className={cn(styles.card, className, {
+          [styles.blue]: color == "blue",
+        })}
+        ref={ref}
+        {...otherProps}
+      >
+        {children}
+      </div>
+    );
+  }
+);

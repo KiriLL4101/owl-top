@@ -15,21 +15,16 @@ interface ButtonProps
   arrow?: "right" | "down" | "none";
 }
 
-export const Button = ({
-  variant,
-  children,
-  className,
-  arrow = "none",
-  ...props
-}: ButtonProps): JSX.Element => {
-  const {} = props;
+export const Button = (props: ButtonProps): JSX.Element => {
+  const { variant, children, className, arrow = "none", ...otherProps } = props;
+
   return (
     <button
       className={cn(styles.button, className, {
         [styles.primary]: variant === "primary",
         [styles.ghost]: variant === "ghost",
       })}
-      {...props}
+      {...otherProps}
     >
       {children}
       {arrow !== "none" && (

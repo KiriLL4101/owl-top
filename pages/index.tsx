@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import axios from "axios";
 
 import { Button } from "../components";
-import Rating from "../components/Rating/Rating";
+import { Rating } from "../components/Rating/Rating";
 import { withLayout } from "../layout/Layout";
 
 export enum TopLevelCategory {

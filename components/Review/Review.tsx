@@ -1,11 +1,12 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { type DetailedHTMLProps, type HTMLAttributes } from "react";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
 import cn from "classnames";
 
-import UserIcon from "./user.svg";
-import Rating from "../Rating/Rating";
+import { Rating } from "../Rating/Rating";
 import type { ReviewModel } from "../../types/product.interface";
+
+import UserIcon from "./user.svg";
 
 import styles from "./Review.module.css";
 
@@ -14,14 +15,13 @@ export interface ReviewProps
   review: ReviewModel;
 }
 
-export const Review = ({
-  review,
-  className,
-  ...props
-}: ReviewProps): JSX.Element => {
+export const Review = (props: ReviewProps): JSX.Element => {
+  const { review, className, ...otherProps } = props;
+
   const { name, title, description, createdAt, rating } = review;
+
   return (
-    <div className={cn(styles.review, className)} {...props}>
+    <div className={cn(styles.review, className)} {...otherProps}>
       <UserIcon className={styles.user} />
       <div className={styles.title}>
         <span className={styles.name}>{name}:</span>&nbsp;&nbsp;

@@ -1,11 +1,13 @@
 import {
-  DetailedHTMLProps,
-  Fragment,
-  HTMLAttributes,
-  KeyboardEvent,
+  forwardRef,
   useEffect,
   useState,
+  type DetailedHTMLProps,
+  type ForwardedRef,
+  type HTMLAttributes,
+  type KeyboardEvent,
 } from "react";
+import type { FieldError } from "react-hook-form";
 import cn from "classnames";
 
 import StarIcon from "./star.svg";
@@ -16,68 +18,82 @@ interface RatingProps
   isEditable?: boolean;
   rating: number;
   setRating?: (rating: number) => void;
+  error?: FieldError;
 }
 
-const Rating = ({
-  isEditable = true,
-  rating,
-  setRating,
-  ...props
-}: RatingProps): JSX.Element => {
-  const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
-    new Array(5).fill(<></>)
-  );
+export const Rating = forwardRef(
+  (props: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+    const {
+      isEditable = false,
+      error,
+      rating,
+      setRating,
+      ...otherProps
+    } = props;
 
-  useEffect(() => {
-    constructRating(rating);
-  }, [rating]);
+    const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
+      new Array(5).fill(<></>)
+    );
 
-  const constructRating = (currentRating: number) => {
-    const updatedArray = ratingArray.map((elem, idx) => {
-      return (
-        <span
-          className={cn(styles.star, {
-            [styles.filled]: idx < currentRating,
-            [styles.editable]: isEditable,
-          })}
-          onMouseEnter={() => changeDisplay(idx + 1)}
-          onMouseLeave={() => changeDisplay(rating)}
-          onClick={() => onClick(idx + 1)}
-        >
-          <StarIcon
-            tabIndex={isEditable ? 0 : -1}
-            onKeyDown={(e: KeyboardEvent<SVGElement>) =>
-              isEditable && handleSpace(idx + 1, e)
-            }
-          />
-        </span>
-      );
-    });
-    setRatingArray(updatedArray);
-  };
+    useEffect(() => {
+      constructRating(rating);
+    }, [rating]);
 
-  const changeDisplay = (i: number) => {
-    if (!isEditable) return;
-    constructRating(i);
-  };
+    const constructRating = (currentRating: number) => {
+      const updatedArray = ratingArray.map((rate: JSX.Element, idx: number) => {
+        return (
+          <span
+            className={cn(styles.star, {
+              [styles.filled]: idx < currentRating,
+              [styles.editable]: isEditable,
+            })}
+            onMouseEnter={() => changeDisplay(idx + 1)}
+            onMouseLeave={() => changeDisplay(rating)}
+            onClick={() => onClick(idx + 1)}
+          >
+            <StarIcon
+              tabIndex={isEditable ? 0 : -1}
+              onKeyDown={(e: KeyboardEvent<SVGElement>) =>
+                isEditable && handleSpace(idx + 1, e)
+              }
+            />
+          </span>
+        );
+      });
+      setRatingArray(updatedArray);
+    };
 
-  const onClick = (i: number) => {
-    if (!isEditable || !setRating) return;
-    setRating(i);
-  };
+    const changeDisplay = (i: number) => {
+      if (!isEditable) return;
 
-  const handleSpace = (i: number, e: KeyboardEvent<SVGElement>) => {
-    if (e.code != "Space" || !setRating) return;
-    setRating(i);
-  };
+      constructRating(i);
+    };
 
-  return (
-    <div {...props}>
-      {ratingArray.map((elem, idx) => (
-        <Fragment key={idx}>{elem}</Fragment>
-      ))}
-    </div>
-  );
-};
+    const onClick = (i: number) => {
+      if (!isEditable || !setRating) return;
 
-export default Rating;
+      setRating(i);
+    };
+
+    const handleSpace = (i: number, e: KeyboardEvent<SVGElement>) => {
+      if (e.code != "Space" || !setRating) return;
+
+      setRating(i);
+    };
+
+    return (
+      <div
+        {...otherProps}
+        ref={ref}
+        className={cn(styles.ratingWrapper, {
+          [styles.error]: error,
+        })}
+      >
+        {ratingArray.map((r, i) => (
+          <span key={i}>{r}</span>
+        ))}
+        {error && <span className={styles.errorMessage}>{error.message}</span>}
+      </div>
+    );
+  }
+);
