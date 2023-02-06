@@ -34,8 +34,10 @@ export const AppContextProvider = ({
 
 export const useMenu = () => {
   const context = useContext(AppContext);
+
   if (context === undefined) {
     throw new Error("useMenu hook must be used within a Context Provider");
   }
+
   return context;
 };
