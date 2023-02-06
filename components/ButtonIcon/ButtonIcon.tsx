@@ -24,20 +24,18 @@ export interface ButtonIconProps
   variant: "primary" | "white";
 }
 
-export const ButtonIcon = ({
-  variant,
-  icon,
-  className,
-  ...props
-}: ButtonIconProps): JSX.Element => {
+export const ButtonIcon = (props: ButtonIconProps): JSX.Element => {
+  const { variant, icon, className, ...otherProps } = props;
+
   const IconComp = icons[icon];
+
   return (
     <button
       className={cn(styles.button, className, {
         [styles.primary]: variant == "primary",
         [styles.white]: variant == "white",
       })}
-      {...props}
+      {...otherProps}
     >
       <IconComp />
     </button>

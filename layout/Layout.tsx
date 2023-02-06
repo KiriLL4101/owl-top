@@ -1,8 +1,8 @@
 import { FunctionComponent, ReactNode } from "react";
 
 import { AppContext, AppContextProvider } from "../context/app.context";
-import Sidebar from "./Sidebar/Sidebar";
-import Header from "./Header/Header";
+import { Sidebar } from "./Sidebar/Sidebar";
+import { Header } from "./Header/Header";
 import Footer from "./Footer/Footer";
 import { Up } from "../components";
 

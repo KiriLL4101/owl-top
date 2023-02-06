@@ -18,14 +18,7 @@ const P = ({
   children,
   ...props
 }: PProps): JSX.Element => (
-  <p
-    className={cn(styles.p, className, {
-      [styles.m]: size === "m",
-      [styles.l]: size === "l",
-      [styles.s]: size === "s",
-    })}
-    {...props}
-  >
+  <p className={cn(styles.p, className, styles[size])} {...props}>
     {children}
   </p>
 );

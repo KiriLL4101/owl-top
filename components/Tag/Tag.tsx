@@ -11,26 +11,20 @@ interface TagProps
   children: ReactNode;
 }
 
-export const Tag = ({
-  size = "m",
-  color = "ghost",
-  href,
-  className,
-  children,
-  ...props
-}: TagProps): JSX.Element => {
+export const Tag = (props: TagProps): JSX.Element => {
+  const {
+    size = "m",
+    color = "ghost",
+    href,
+    className,
+    children,
+    ...otherProps
+  } = props;
+
   return (
     <div
-      className={cn(styles.tag, className, {
-        [styles.m]: size === "m",
-        [styles.s]: size === "s",
-        [styles.ghost]: color === "ghost",
-        [styles.red]: color === "red",
-        [styles.green]: color === "green",
-        [styles.grey]: color === "grey",
-        [styles.primary]: color === "primary",
-      })}
-      {...props}
+      className={cn(styles.tag, className, styles[size], styles[color])}
+      {...otherProps}
     >
       {href ? <a href={href}>{children}</a> : <>{children}</>}
     </div>

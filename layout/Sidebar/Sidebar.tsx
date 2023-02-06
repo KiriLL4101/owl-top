@@ -19,5 +19,3 @@ export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
     </div>
   );
 };
-
-export default Sidebar;
