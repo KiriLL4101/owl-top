@@ -24,17 +24,15 @@ interface ReviewSentResponse {
   message: string;
 }
 
-interface ReviewErrorResponse {
-  message: string;
-}
-
 interface ReviewFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   productId: string;
+  isOpened: boolean;
 }
 
 export const ReviewForm = ({
   productId,
+  isOpened,
   className,
   ...props
 }: ReviewFormProps): JSX.Element => {
@@ -45,7 +43,9 @@ export const ReviewForm = ({
     formState: { errors },
     reset,
   } = useForm<ReviewForm>();
+
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+
   const [error, setError] = useState<string>();
 
   const onSubmit = async (formData: ReviewForm) => {
@@ -74,6 +74,7 @@ export const ReviewForm = ({
           })}
           placeholder="Имя"
           error={errors.name}
+          tabIndex={isOpened ? 0 : -1}
         />
         <Input
           {...register("title", {
@@ -82,6 +83,7 @@ export const ReviewForm = ({
           placeholder="Заголовок отзыва"
           className={styles.title}
           error={errors.title}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -96,6 +98,7 @@ export const ReviewForm = ({
                 ref={field.ref}
                 setRating={field.onChange}
                 error={errors.rating}
+                tabIndex={isOpened ? 0 : -1}
               />
             )}
           />
@@ -107,9 +110,12 @@ export const ReviewForm = ({
           placeholder="Текст отзыва"
           className={styles.description}
           error={errors.description}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.submit}>
-          <Button variant="primary">Отправить</Button>
+          <Button variant="primary" tabIndex={isOpened ? 0 : -1}>
+            Отправить
+          </Button>
           <span className={styles.info}>
             * Перед публикацией отзыв пройдет предварительную модерацию и
             проверку
