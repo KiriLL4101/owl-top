@@ -53,7 +53,7 @@ export const Rating = forwardRef(
     };
 
     const constructRating = (currentRating: number) => {
-      const updatedArray = ratingArray.map((rate: JSX.Element, idx: number) => {
+      const updatedArray = ratingArray.map((_: JSX.Element, idx: number) => {
         return (
           <span
             className={cn(styles.star, {
@@ -66,6 +66,12 @@ export const Rating = forwardRef(
             tabIndex={computeFocus(rating, idx)}
             onKeyDown={handleKey}
             ref={(ref) => ratingArrayRef.current?.push(ref)}
+            role={isEditable ? "slider" : ""}
+            aria-label={isEditable ? "Укажите рейтинг" : "рейтинг" + rating}
+            aria-invalid={error ? true : false}
+            aria-valuenow={rating}
+            aria-valuemax={5}
+            aria-valuemin={1}
           >
             <StarIcon />
           </span>
@@ -116,7 +122,11 @@ export const Rating = forwardRef(
         {ratingArray.map((r, i) => (
           <span key={i}>{r}</span>
         ))}
-        {error && <span className={styles.errorMessage}>{error.message}</span>}
+        {error && (
+          <span role="alert" className={styles.errorMessage}>
+            {error.message}
+          </span>
+        )}
       </div>
     );
   }

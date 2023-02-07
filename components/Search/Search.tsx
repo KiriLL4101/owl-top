@@ -10,7 +10,7 @@ import GlassIcon from "./glass.svg";
 import styles from "./Search.module.css";
 
 export interface SearchProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+  extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {}
 
 export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<string>("");
@@ -32,7 +32,7 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
   };
 
   return (
-    <div className={cn(className, styles.search)} {...props}>
+    <form className={cn(className, styles.search)} {...props} role="search">
       <Input
         className={styles.input}
         placeholder="Поиск..."
@@ -40,9 +40,14 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <Button variant="primary" className={styles.button} onClick={goToSearch}>
+      <Button
+        variant="primary"
+        className={styles.button}
+        onClick={goToSearch}
+        aria-label="Искать по сайту"
+      >
         <GlassIcon />
       </Button>
-    </div>
+    </form>
   );
 };

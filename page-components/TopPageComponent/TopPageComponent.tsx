@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from "react";
+import { useReducedMotion } from "framer-motion";
 
 import {
   Htag,
@@ -31,6 +32,8 @@ export const TopPageComponent = ({
     { products, sort: SortEnum.Rating }
   );
 
+  const shouldReduceMotion = useReducedMotion();
+
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
   };
@@ -44,15 +47,22 @@ export const TopPageComponent = ({
       <div className={styles.title}>
         <Htag tag="h1">{page?.title}</Htag>
         {products && (
-          <Tag color="grey" size="m">
+          <Tag color="grey" size="m" aria-label={products.length + "элементов"}>
             {products.length}
           </Tag>
         )}
         <Sort sort={sort} setSort={setSort} />
       </div>
-      <div>
+      <div role="list">
         {sortedProducts &&
-          sortedProducts.map((p) => <Product layout key={p._id} product={p} />)}
+          sortedProducts.map((p) => (
+            <Product
+              role="listitem"
+              layout={!Boolean(shouldReduceMotion)}
+              key={p._id}
+              product={p}
+            />
+          ))}
       </div>
       <div className={styles.hhTitle}>
         <Htag tag="h2">Вакансии - {page.category}</Htag>
