@@ -1,10 +1,12 @@
-import styles from "./hhData.module.css";
-import RateIcon from "./rate.svg";
 import { priceRu } from "../../helpers/helpers";
 import { Card } from "../Card/Card";
-import { type HhData } from "../../types/page.interface";
+import { type IHhData } from "../../types/page.interface";
 
-interface HhDataProps extends HhData {}
+import RateIcon from "./rate.svg";
+
+import styles from "./hhData.module.css";
+
+interface HhDataProps extends IHhData {}
 
 export const HhData = ({
   count,

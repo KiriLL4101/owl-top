@@ -14,7 +14,7 @@ export enum TopLevelCategory {
 }
 
 // TODO: Home page content
-function Home({ menu, firstCategory }: HomeProps) {
+function Home(props: HomeProps) {
   return (
     <main>
       <Button variant="ghost" arrow="right">
