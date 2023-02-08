@@ -1,6 +1,6 @@
 {
-  "name": "top-app",
-  "version": "0.1.0",
+  "name": "owl-top",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "prepare": "husky install",
