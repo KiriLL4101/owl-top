@@ -1,10 +1,8 @@
-import React from "react";
 import styles from "./hhData.module.css";
-import cn from "classnames";
 import RateIcon from "./rate.svg";
 import { priceRu } from "../../helpers/helpers";
-import type { HhData } from "../../types/page.interface";
 import { Card } from "../Card/Card";
+import { type HhData } from "../../types/page.interface";
 
 interface HhDataProps extends HhData {}
 

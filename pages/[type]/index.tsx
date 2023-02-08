@@ -1,9 +1,10 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import axios from "axios";
+import { ParsedUrlQuery } from "querystring";
+
 import { withLayout } from "../../layout/Layout";
 import { firstLevelMenu } from "../../helpers/helpers";
-import { ParsedUrlQuery } from "node:querystring";
 import { MenuItem } from "../../types/menu.interface";
 
 function Type({ firstCategory }: TypeProps): JSX.Element {
