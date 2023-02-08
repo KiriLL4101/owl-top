@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "dev": "next dev",
     "export": "next export",
     "debug": "NODE_OPTIONS='--inspect' next dev",
