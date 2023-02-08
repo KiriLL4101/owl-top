@@ -4,7 +4,7 @@ import { type IHhData } from "../../types/page.interface";
 
 import RateIcon from "./rate.svg";
 
-import styles from "./hhData.module.css";
+import styles from "./HhData.module.css";
 
 interface HhDataProps extends IHhData {}
 
