@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button } from "../components";
 import { Rating } from "../components/Rating/Rating";
 import { withLayout } from "../layout/Layout";
+import type { MenuItem } from "../types/menu.interface";
 
 export enum TopLevelCategory {
   Courses,
@@ -12,38 +13,15 @@ export enum TopLevelCategory {
   Products,
 }
 
-export interface PageItem {
-  alias: string;
-  title: string;
-  _id: string;
-  category: string;
-}
-
-export interface MenuItem {
-  _id: {
-    secondCategory: string;
-  };
-  isOpened?: boolean;
-  pages: PageItem[];
-}
-
-export interface FirstLevelMenuItem {
-  route: string;
-  name: string;
-  icon: JSX.Element;
-  id: TopLevelCategory;
-}
-
+// TODO: Home page content
 function Home({ menu, firstCategory }: HomeProps) {
   return (
-    <>
-      <main>
-        <Button variant="ghost" arrow="right">
-          Кнопка
-        </Button>
-        <Rating rating={4} />
-      </main>
-    </>
+    <main>
+      <Button variant="ghost" arrow="right">
+        Кнопка
+      </Button>
+      <Rating rating={4} />
+    </main>
   );
 }
 
