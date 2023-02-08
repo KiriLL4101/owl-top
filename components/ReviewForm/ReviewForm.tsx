@@ -62,7 +62,7 @@ export const ReviewForm = ({
         setError("Что-то пошло не так");
       }
     } catch (error) {
-      setError(error?.message || "Что-то пошло не так");
+      setError("Что-то пошло не так");
     }
   };
 
