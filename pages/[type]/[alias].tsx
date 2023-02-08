@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
-import React from "react";
+import Head from "next/head";
 import axios from "axios";
 import { ParsedUrlQuery } from "node:querystring";
 
@@ -13,11 +13,20 @@ import type { ProductModel } from "../../types/product.interface";
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
   return (
-    <TopPageComponent
-      firstCategory={firstCategory}
-      page={page}
-      products={products}
-    />
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name="description" content={page.metaDescription} />
+        <meta property="og:title" content={page.metaTitle} />
+        <meta property="og:description" content={page.metaDescription} />
+        <meta property="og:type" content="article" />
+      </Head>
+      <TopPageComponent
+        firstCategory={firstCategory}
+        page={page}
+        products={products}
+      />
+    </>
   );
 }
 
