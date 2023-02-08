@@ -1,8 +1,5 @@
 # `Owl Top`
 
-![Performance](https://raw.githubusercontent.com/KiriLL4101/owl-top/main/lighthouse-badges/lighthouse_performance.svg)
-![Best practices](https://raw.githubusercontent.com/KiriLL4101/owl-top/main/lighthouse-badges/lighthouse_best-practices.svg)
-![Accessibility](https://raw.githubusercontent.com/KiriLL4101/owl-top/main/lighthouse-badges/lighthouse_accessibility.svg)
 ## Description
 
 <strong>Owl Top is an aggregator of online courses.</strong>
